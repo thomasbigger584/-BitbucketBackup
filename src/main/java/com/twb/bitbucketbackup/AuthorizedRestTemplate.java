@@ -44,7 +44,7 @@ public class AuthorizedRestTemplate extends RestTemplate {
     private HttpEntity<String> getRequest() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Basic " + getBase64Credentials());
-        return new HttpEntity<String>(headers);
+        return new HttpEntity<>(headers);
     }
 
     private String getBase64Credentials() {

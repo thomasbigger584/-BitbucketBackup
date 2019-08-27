@@ -43,9 +43,7 @@ public class BitbucketBackupApplication implements CommandLineRunner {
 
         AuthorizedRestTemplate restTemplate = new AuthorizedRestTemplate(USERNAME, PASSWORD);
 
-        pageloop:
         for (int page = 1; page < 30; page++) {
-            log.info("Page: " + page);
             final String uriString = "https://api.bitbucket.org/2.0/repositories/performanceactive?page=" + page;
             String response = restTemplate.getForObject(uriString);
 
@@ -98,7 +96,7 @@ public class BitbucketBackupApplication implements CommandLineRunner {
                         .setDirectory(repoDir)
                         .call();
             } catch (GitAPIException e) {
-               log.error("Exception occurred while cloning repo");
+                log.error("Exception occurred while cloning " + repositoryToClone.getName());
                 e.printStackTrace();
             }
         }
